@@ -1,0 +1,19 @@
+{
+  "name": "mithril_todo",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Jesús R Peinado <jesusrpeinado@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
