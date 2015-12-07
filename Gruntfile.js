@@ -22,12 +22,7 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'dist/js/<%= pkg.name %>.dist.js': [
-            'src/app/**/*.module.js',
-            'src/app/**/*.js',
-            'src/app/app.js',
-            '<%= ngtemplates.dist.dest %>'
-          ]
+          'dist/js/<%= pkg.name %>.dist.js': 'src/js/*.js'
         }
       }
     },
@@ -51,23 +46,6 @@ module.exports = function(grunt) {
           url: function(url) {
             return url.substr(url.indexOf('src') + 'src'.length);
           }
-        }
-      }
-    },
-    uglify: {
-      dist: {
-        options: {
-          banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
-          sourceMap: true,
-          sourceMapIn: 'dist/js/<%= pkg.name %>.dist.js.map',
-          sourceMapName: 'dist/js/<%= pkg.name %>.dist.min.js.map',
-          mangle: false,
-          compress: true
-        },
-        files: {
-          'dist/js/<%= pkg.name %>.dist.min.js': [
-            'dist/js/<%= pkg.name %>.dist.js'
-          ]
         }
       }
     },
@@ -193,19 +171,7 @@ module.exports = function(grunt) {
         cssDest: 'dist/css/bowerbundle.css',
         bowerOptions: {
           relative: false
-        },
-        mainFiles: {
-          'font-awesome': 'css/font-awesome.min.css'
-        },
-        dependencies: {
-          'bootstrap-sass': 'jquery',
-          'bootstrap-css': 'jquery'
-        },
-        exclude: [
-          'compass-breakpoint',
-          'compass-mixins',
-          'sassy-maps'
-        ]
+        }
       }
     },
     nodemon: {
@@ -242,7 +208,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bower-install-task');
   // ----- OTHER TASKS ------
 
-  grunt.registerTask('distjs', ['jshint', 'jscs', 'ngtemplates', 'concat', 'ngAnnotate', 'uglify', 'copy']);
+  grunt.registerTask('distjs', ['jshint', 'jscs', 'concat', 'copy']);
   grunt.registerTask('distcss', ['sass_globbing:main', 'sass', 'cssmin', 'copy']);
   grunt.registerTask('dev', ['dist', 'concurrent:dev']);
   grunt.registerTask('dist', 'Task to create a distribution release.', [
